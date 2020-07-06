@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Model.EF.DanhMuc>
+
+@{ 
+    Layout = null;
+}
+<li class="active"><a href="/">Trang chủ</a></li>
+@foreach (Model.EF.DanhMuc item in Model)
+{
+    <li><a href="/Home/Categories/@item.ma">@item.ten</a></li>
+}
+<li><a href="/Contact/Index">Tìm kiếm</a></li>

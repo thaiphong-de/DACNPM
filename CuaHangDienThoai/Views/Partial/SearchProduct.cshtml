@@ -1,0 +1,7 @@
+﻿<div class="single-sidebar">
+    <h2 class="sidebar-title">Tìm kiếm sản phẩm</h2>
+    @using(Html.BeginForm("Search", "Search", FormMethod.Post)){
+        <input type="text" placeholder="Gõ tên sản phẩm cần tìm..." name="key">
+        <input type="submit" value="Tìm Kiểm">
+    }
+</div>

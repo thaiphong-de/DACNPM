@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "CheckOut";
+    Layout = "~/Views/Shared/HomeMaster.cshtml";
+}
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Shopping Cart</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- End Page title area -->
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                @Html.Partial("../Partial/SearchProduct")
+                <div id="hotProduct"></div>
+                <div id="newProduct"></div>
+            </div>
+            <div class="col-md-8">
+                
+            </div>
+        </div>
+    </div>
+</div>

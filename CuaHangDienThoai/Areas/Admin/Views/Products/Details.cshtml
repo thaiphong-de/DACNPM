@@ -1,0 +1,92 @@
+﻿@model Model.EF.SanPham
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/AdminMaster.cshtml";
+}
+
+
+<section class="content container-fluid">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Danh sách tài khoản</h3>
+            <h3>@Html.ActionLink("Tạo mới", "Create")</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <hr />
+            <dl class="dl-horizontal">
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DanhMuc.ten)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.DanhMuc.ten)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.NhaCungCap.ten)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NhaCungCap.ten)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ten)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ten)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.gia_cu)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.gia_cu)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.gia_moi)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.gia_moi)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.hinh_anh)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.hinh_anh)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.hot)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.hot)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ngay_tao)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ngay_tao)
+                    </dd>
+
+                </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Cập nhật", "Edit", new { id = Model.ma }) |
+            @Html.ActionLink("Trở về", "Index")
+        </p>
+        </div>
+</section>

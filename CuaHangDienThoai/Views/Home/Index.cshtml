@@ -1,0 +1,62 @@
+﻿@model CuaHangMayTinh.Models.HomeModel
+@using System.Globalization;
+@{
+    ViewBag.Title = "Test";
+    Layout = "~/Views/Shared/HomeMaster.cshtml";
+}
+<div class="slider-area">
+    <!-- Slider -->
+    @Html.Partial("Partial/Slider")
+    <!-- ./Slider -->
+</div> <!-- End slider area -->
+
+<div class="promo-area">
+    @Html.Partial("Partial/Promo")
+</div> <!-- End promo area -->
+
+<div class="maincontent-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Partial("Partial/LastestProduct", Model.LastestProducts)
+            </div>
+        </div>
+    </div>
+</div> <!-- End main content area -->
+<div class="maincontent-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Partial("Partial/HotProduct", Model.HotProducts)
+            </div>
+        </div>
+    </div>
+</div> <!-- End main content area -->
+<div class="brands-area">
+    @Html.Partial("Partial/BrandList")
+</div> <!-- End brands area -->
+
+@*<div class="product-widget-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="single-product-widget">
+                    @Html.Partial("Partial/TopSellerProduct", Model.TopSellerProducts)
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="single-product-widget">
+                    @Html.Partial("Partial/RecentlyProduct", Model.RecentlyViewedProducts)
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="single-product-widget">
+                    @Html.Partial("Partial/TopViewedProduct", Model.TopViewedProducts)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  End product widget area*@ 

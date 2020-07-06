@@ -1,0 +1,107 @@
+﻿@model IEnumerable<Model.EF.HoaDonBan>
+@using CuaHangMayTinh.Areas.Admin.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/HomeMaster.cshtml";
+}
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Danh sách đơn hàng</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ma)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ten_khach_hang)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.dia_chi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.so_dien_thoai)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.tinh_trang)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ngay_tao)
+                        </th>
+                        <th>
+                            Tổng tiền
+                        </th>
+                        <th>
+                            Chi tiết
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ma)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ten_khach_hang)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.dia_chi)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.so_dien_thoai)
+                            </td>
+                            <td>
+                                @if (item.tinh_trang == OrderStatus.HOAN_THANH)
+                                {
+                                    <span class="text-success">Hoàn thành</span>
+                                }
+                                else if (item.tinh_trang == OrderStatus.DANG_GIAO_HANG)
+                                {
+                                    <span class="text-primary">Đang giao hàng</span>
+                                }
+                                else if (item.tinh_trang == OrderStatus.HUY_BO)
+                                {
+                                    <span class="text-danger">Hủy bỏ</span>
+                                }
+                                else
+                                {
+                                    <span class="text-info">Đã tiếp nhận</span>
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ngay_tao)
+                            </td>
+                            <td>
+                                @item.ChiTietHoaDonBans.Sum(x => x.so_luong * x.don_gia)
+                            </td>
+                            <td>
+                                <a href="/SearchOrder/Details/@item.ma">Chi tiết đơn hàng</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

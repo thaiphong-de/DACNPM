@@ -1,0 +1,123 @@
+﻿@model Model.EF.SanPham
+@using System.Globalization;
+@{
+    ViewBag.Title = "Test";
+    Layout = "~/Views/Shared/HomeMaster.cshtml";
+}
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Shop</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                @Html.Partial("../Partial/SearchProduct")
+                <div id="hotProduct"></div>
+                <div id="newProduct"></div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="product-content-right">
+                    <div class="product-breadcroumb">
+                        <a href="">Home</a>
+                        <a href="">@Model.DanhMuc.ten</a>
+                        <a href="">@Model.ten</a>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="product-images">
+                                <div class="product-main-img">
+                                    <img src="~/Public/upload/product/@Model.hinh_anh" alt="">
+                                </div>
+
+                                <div class="product-gallery">
+                                    <img src="img/product-thumb-1.jpg" alt="">
+                                    <img src="img/product-thumb-2.jpg" alt="">
+                                    <img src="img/product-thumb-3.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="product-inner">
+                                <h2 class="product-name">@Model.ten</h2>
+                                <div class="product-inner-price">
+                                    <ins>@Model.gia_moi.ToString("#,###", CultureInfo.GetCultureInfo("vi-VN"))</ins> <del>@Model.gia_cu.ToString("#,###", CultureInfo.GetCultureInfo("vi-VN"))</del>
+                                </div>
+
+                                <form action="/Cart/AddToCart/@Model.ma" class="cart">
+                                    <div class="quantity">
+                                        <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+                                    </div>
+                                    <button id="add_cart" class="add_to_cart_button" type="submit">Thêm vào giỏ</button>
+                                </form>
+
+                                <div class="product-inner-category">
+                                    <p>Hãng: <a href="">@Model.DanhMuc.ten</a></p>
+                                </div>
+
+                                <div role="tabpanel">
+                                    <ul class="product-tab" role="tablist">
+                                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Mô tả</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade in active" id="home">
+                                            <h2>Số lượng:@Html.Raw(Model.so_luong)</h2>
+                                            <h2>Số lượt xem: @Html.Raw(Model.so_luot_xem)</h2>
+                                            <h2>Mô tả về sản phẩm:</h2>
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            @*@Html.Raw(Model.mo_ta)*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                       
+                        @Html.Raw(Model.mo_ta)
+                    </div>
+                    <div class="related-products-wrapper"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        console.log('???')
+        $('#hotProduct').load('/Partial/HotProduct')
+        $('#newProduct').load('/Partial/NewProduct')
+        $('.related-products-wrapper').load('/Partial/SameCategory/@Model.ma_danh_muc', function () {
+            $('.related-products-carousel').owlCarousel('refresh');
+        })
+    })
+    if (@Html.Raw(Model.so_luong)== 0) {
+        var button = document.getElementById("add_cart");
+        
+        // Thêm sự kiện cho đối tượng
+        button.onclick = function () {
+            alert("Sản phẩm đã hết hàng hoặc không còn kinh doanh. Bạn hãy chọn sản phẩm khác thay thế");
+            
+        };
+
+    }
+    
+</script>

@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Model.EF.SanPham>
+@{ 
+    Layout = null;
+}
+<div class="single-sidebar">
+    <h2 class="sidebar-title">Sản phẩm HOT</h2>
+    @foreach (Model.EF.SanPham item in Model)
+    {
+        <div class="thubmnail-recent">
+            <img src="~/Public/upload/product/@item.hinh_anh" class="recent-thumb" alt="">
+            <h2><a href="/Home/Detail/@item.ma">@item.ten</a></h2>
+            <div class="product-sidebar-price">
+                <ins>@item.gia_moi</ins> <del>@item.gia_cu</del>
+            </div>
+        </div>
+    }
+</div>

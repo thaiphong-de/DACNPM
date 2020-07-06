@@ -1,0 +1,142 @@
+﻿@model Model.EF.TaiKhoan
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/HomeMaster.cshtml";
+}
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Giỏ hàng</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- End Page title area -->
+
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                @Html.Partial("../Partial/SearchProduct")
+                <div id="hotProduct"></div>
+                <div id="newProduct"></div>
+            </div>
+            <div class="col-md-8">
+                @if(@ViewBag.Message != null){
+                    <h2>@ViewBag.Message</h2>
+                }
+                else
+                {
+                    <div class="product-content-right">
+                        <div class="woocommerce">
+                            <div class="woocommerce-info">
+                                
+                            </div>
+
+                            <form enctype="multipart/form-data" action="/CheckOut/CheckOut" class="checkout" method="post" name="checkout">
+
+                                <div id="customer_details" class="row">
+                                    <div class="col-md-8">
+                                        <div class="woocommerce-billing-fields">
+                                            <h3>Chi tiết đơn hàng</h3>
+
+                                            <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+                                                <label class="" for="billing_first_name">
+                                                    Tên khách hàng:
+                                                </label>
+                                                <input type="text" value="@Model.ten" placeholder="" id="ten" name="ten" class="input-text " required>
+                                            </p>
+                                            <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+                                                <label class="" for="billing_first_name">
+                                                    Địa chỉ:
+                                                </label>
+                                                <input type="text" value="@Model.dia_chi" placeholder="@Model.dia_chi" id="dia_chi" name="dia_chi" class="input-text " required>
+                                            </p>
+                                            <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+                                                <label class="" for="billing_first_name">
+                                                    Số điện thoại:
+                                                </label>
+                                                <input type="text" value="@Model.so_dien_thoai" placeholder="" id="so_dien_thoai" name="so_dien_thoai" class="input-text " required>
+                                            </p>
+                                            <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+                                                <label class="" for="billing_first_name">
+                                                    Email:
+                                                </label>
+                                                <input type="text" value="@Model.email" placeholder="" id="email" name="email" class="input-text " required>
+                                            </p>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <h3 id="order_review_heading">Đơn hàng của bạn</h3>
+
+                                <div id="order_review" style="position: relative;">
+                                    <table class="shop_table">
+                                        <thead>
+                                            <tr>
+                                                <th class="product-name">Sản phẩm</th>
+                                                <th class="product-total">Tổng tiền</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="cart_item">
+                                                <td class="product-name">
+                                                    Ship <strong class="product-quantity"></strong>
+                                                </td>
+                                                <td class="product-total">
+                                                    <span class="amount">Miễn phí</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+
+                                            <tr class="cart-subtotal">
+                                                <th>Tổng</th>
+                                                <td>
+                                                    <span class="amount">@ViewBag.Total</span>
+                                                </td>
+                                            </tr>
+
+
+
+                                            <tr class="order-total">
+                                                <th>Thành tiền</th>
+                                                <td><strong><span class="amount">@ViewBag.Total</span></strong> </td>
+                                            </tr>
+
+                                        </tfoot>
+                                    </table>
+
+
+                                    <div id="payment">
+
+
+                                        <div class="form-row place-order">
+                                            <input type="submit" data-value="Place order" value="Đặt hàng" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
+                                        </div>
+                                        <div class="clear"></div>
+
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#hotProduct').load('/Partial/HotProduct');
+        $('#newProduct').load('/Partial/NewProduct');
+    })
+</script>

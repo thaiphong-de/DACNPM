@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Model.EF.SanPham>
+@using System.Globalization;
+@{ 
+}
+
+<div class="latest-product">
+    <h2 class="section-title">Sản phẩm HOT</h2>
+    <div class="product-carousel">
+        @foreach (var item in Model)
+        {
+            <div class="single-product">
+                <div class="product-f-image">
+                    <img src="~/Public/upload/product/@item.hinh_anh" alt="">
+                    <div class="product-hover">
+                        <a href="/Cart/AddToCart/@item.ma" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                        <a href="/Home/Detail/@item.ma" class="view-details-link"><i class="fa fa-link"></i> Chi Tiết</a>
+                    </div>
+                </div>
+
+                <h2><a href="/Home/Detail/@item.ma">@item.ten</a></h2>
+                <div class="product-carousel-price">
+                    <ins>@item.gia_moi.ToString("#,###", CultureInfo.GetCultureInfo("vi-VN"))</ins> <del>@item.gia_cu.ToString("#,###", CultureInfo.GetCultureInfo("vi-VN"))</del>
+                </div>
+            </div>
+        }
+    </div>
+</div>

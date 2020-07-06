@@ -1,0 +1,144 @@
+﻿@model CuaHangMayTinh.Areas.Admin.Models.ProductDTO
+@{
+    ViewBag.Title = "Sửa loại tài khoản";
+    Layout = "~/Areas/Admin/Views/Shared/AdminMaster.cshtml";
+}
+<section class="content container-fluid">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Sửa sản phẩm</h3>
+        </div>
+        @using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { encType = "multipart/form-data" }))
+        {
+            <div class="form-horizontal">
+                <h4>Sản phẩm</h4>
+                <input type="hidden" name="sanPham.ma" value="@Model.sanPham.ma" />
+                <input type="hidden" name="oldImage" value="@Model.sanPham.hinh_anh" />
+                <hr />
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sanPham.ten, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.sanPham.ten, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.sanPham.ten, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sanPham.gia_cu, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.sanPham.gia_cu, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.sanPham.gia_cu, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sanPham.gia_moi, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.sanPham.gia_moi, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.sanPham.gia_moi, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sanPham.so_luong, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.sanPham.so_luong, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.sanPham.so_luong, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sanPham.hinh_anh, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-7">
+                        <input type="file" class="form-control" name="file" accept="image/gif, image/jpeg, image/png" />
+                    </div>
+                    <div class="col-md-3">
+                        <img for-input="hinh_anh" src="~/Public/upload/product/@Model.sanPham.hinh_anh">
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sanPham.mo_ta, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <textarea name="mo_ta" id="mo_ta" rows="10" cols="80"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sanPham.hot, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+
+                        @if (Model.sanPham.hot == true)
+                        {
+                            <input type="checkbox" name="newHot" checked="checked" />
+                        }
+                        else
+                        {
+                            <input type="checkbox" name="newHot" />
+                        }
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sanPham.ma_danh_muc, "Mã danh mục", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("ma_danh_muc", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.sanPham.ma_danh_muc, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sanPham.ma_nha_cung_cap, "Mã nhà cung cấp", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("ma_nha_cung_cap", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.sanPham.ma_nha_cung_cap, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Cập nhật" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+    <div class="box-footer">
+        @Html.ActionLink("Quay lại", "Index")
+    </div>
+</section>
+@section script{
+    <script>
+        CKEDITOR.replace('mo_ta');
+        CKEDITOR.on("instanceReady", function (event) {
+            CKEDITOR.instances.mo_ta.insertHtml('@Html.Raw(Model.sanPham.mo_ta)');
+        });
+
+    </script>
+    <script>
+        $('[name="file"]').change(function () {
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('[for-input="hinh_anh"]')
+                        .attr('src', e.target.result)
+                        .width(250);
+                };
+
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    </script>
+    <script>
+        $('[name="ma_danh_muc"]').attr("name", "sanPham.ma_danh_muc");
+    </script>
+    <script>
+        $('[name="ma_nha_cung_cap"]').attr("name", "sanPham.ma_nha_cung_cap");
+    </script>
+}

@@ -1,0 +1,37 @@
+﻿@model Model.EF.HoaDonBan
+@{
+    ViewBag.Title = "CheckOut";
+    Layout = "~/Views/Shared/HomeMaster.cshtml";
+}
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Uy Tín - Chất Lượng</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- End Page title area -->
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                
+                <div id="hotProduct"></div>
+                <div id="newProduct"></div>
+            </div>
+            <div class="col-md-8">
+                <form method="get" action="/">
+                    <span>Đặt hàng thành công </span>
+                    <br />
+                    <a href="/Order/Details/@Model.ma">Chi tiết đơn hàng</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

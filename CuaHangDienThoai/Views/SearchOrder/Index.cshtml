@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/HomeMaster.cshtml";
+}
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Tìm kiếm đơn hàng</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Tìm kiếm đơn hàng</h1>
+                @using (Html.BeginForm("Search", "SearchOrder", FormMethod.Get))
+                {
+                    <input type="text" placeholder="Nhập vào mã đơn hàng" name="ma">
+                    <input type="submit" value="Tìm Kiểm">
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+﻿@model Model.EF.SanPham
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/HomeMaster.cshtml";
+}
+
+<h2>Index</h2>
+
+<div>
+    <h4>SanPham</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DanhMuc.ten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DanhMuc.ten)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NhaCungCap.ten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhaCungCap.ten)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ten)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.da_xoa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.da_xoa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gia_cu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gia_cu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gia_moi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gia_moi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hinh_anh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hinh_anh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hot)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hot)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mo_ta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mo_ta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.so_luot_xem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.so_luot_xem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.so_luot_mua)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.so_luot_mua)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngay_tao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngay_tao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ma }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

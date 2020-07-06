@@ -1,0 +1,147 @@
+﻿@model  List<CuaHangMayTinh.Models.ProductCartDTO>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/HomeMaster.cshtml";
+}
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>GIỎ HÀNG CỦA BẠN</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- End Page title area -->
+
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                @Html.Partial("../Partial/SearchProduct")
+                <div id="hotProduct"></div>
+                <div id="newProduct"></div>
+            </div>
+
+            <div class="col-md-8">
+                @if (ViewBag.Message != null)
+                {
+                    <h2>@ViewBag.Message</h2>
+                }
+                else
+                {
+                <div class="product-content-right">
+                    <div class="woocommerce">
+                        <form method="post" action="/Cart/UpdateCart">
+                            <table cellspacing="0" class="shop_table cart">
+                                <thead>
+                                    <tr>
+                                        <th class="product-remove">&nbsp;</th>
+                                        <th class="product-thumbnail">&nbsp;</th>
+                                        <th class="product-name">Tên Sản Phẩm</th>
+                                        <th class="product-price">Giá Tiền</th>
+                                        <th class="product-quantity">Số Lượng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{ int i = 0;}
+                                    @foreach (CuaHangMayTinh.Models.ProductCartDTO item in Model)
+                                    {
+                                        <tr class="cart_item" id="product.@item.Product.ma">
+                                            <td class="product-remove">
+                                                <a href="@Url.Action("DeleteCart",new { masp = item.Product.ma})" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?');" class="btn btn-danger btn-sm">Xóa</a>
+                                            </td>
+
+                                            <td class="product-thumbnail">
+                                                <a href="/Home/Detail/@item.Product.ma"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="~/Public/upload/product/@item.Product.hinh_anh"></a>
+                                            </td>
+
+                                            <td class="product-name">
+                                                <a href="/Home/Detail/@item.Product.ma">@item.Product.ten</a>
+                                            </td>
+
+                                            <td class="product-price">
+                                                <span class="amount">@item.Product.gia_moi</span>
+                                            </td>
+
+                                            <td class="product-quantity">
+                                                <div class="quantity buttons_added">
+                                                    <input type="button" class="minus" value="-" product="@item.Product.ma">
+                                                    <input type="number" name="cart[@i]" size="4" class="input-text qty text quantity" title="Qty" value="@item.Quantity" min="0" step="1" product="@item.Product.ma">
+                                                    <input type="button" class="plus" value="+" product="@item.Product.ma">
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        { i++; }
+                                    }
+                                    <tr>
+                                        <td class="actions" colspan="6">
+                                            <input type="submit" value="Cập nhật" name="update_cart" class="button">
+                                            <input type="submit" value="Thanh Toán" name="checkout" class="checkout-button button alt wc-forward">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+
+                        <div class="cart-collaterals">
+                            <div class="cart_totals ">
+                                <h2>Tổng Hàng</h2>
+
+                                <table cellspacing="0">
+                                    <tbody>
+                                        <tr class="cart-subtotal">
+                                            <th>Tổng Tiền</th>
+                                            <td><span class="amount">@ViewBag.Total</span></td>
+                                        </tr>
+
+                                        <tr class="shipping">
+                                            <th>Hình Thức Vận Chuyển</th>
+                                            <td>Miễn Phí Vận Chuyển</td>
+                                        </tr>
+
+                                        <tr class="order-total">
+                                            <th>Tổng Tiền Phải Trả</th>
+                                            <td><strong><span class="amount">@ViewBag.Total</span></strong> </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                                        }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.minus').click(function(){
+            var idProduct = $(this).attr("product");
+            var value = parseInt($('.qty[product="'+ idProduct+'"]').val());
+            if(value>0){
+                $('.qty[product="'+ idProduct+'"]').val(value-1);
+            }
+        });
+        $('.plus').click(function(){
+            var idProduct = $(this).attr("product");
+            var value = parseInt($('.qty[product="'+ idProduct+'"]').val());
+            $('.qty[product="'+ idProduct+'"]').val(value+1);
+        });
+    })
+
+    $(document).ready(function () {
+        $('#hotProduct').load('/Partial/HotProduct');
+        $('#newProduct').load('/Partial/NewProduct');
+    })
+</script>

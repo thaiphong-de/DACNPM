@@ -1,0 +1,113 @@
+﻿@model IEnumerable<Model.EF.HoaDonBan>
+@using CuaHangMayTinh.Areas.Admin.Models;
+@{
+    ViewBag.Title = "Danh sách đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/AdminMaster.cshtml";
+}
+
+<section class="content container-fluid">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Danh sách đơn hàng</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <table id="example1" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ma)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ten_khach_hang)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.dia_chi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.so_dien_thoai)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.tinh_trang)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ngay_tao)
+                        </th>
+                        <th>
+                            Tổng tiền
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ma)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ten_khach_hang)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dia_chi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.so_dien_thoai)
+                        </td>
+                        <td>
+                            @if (item.tinh_trang == OrderStatus.HOAN_THANH)
+                            {
+                                <a href="/Admin/Orders/Details/@item.ma" class="text-success"><span>Hoàn thành</span></a>
+                            }
+                            else if (item.tinh_trang == OrderStatus.DANG_GIAO_HANG)
+                            {
+                                <a href="/Admin/Orders/Details/@item.ma" class="text-primary"><span>Đang giao hàng</span></a>
+                            }
+                            else if (item.tinh_trang == OrderStatus.HUY_BO)
+                            {
+                                <a href="/Admin/Orders/Details/@item.ma" class="text-danger"><span>Hủy bỏ</span></a>
+                            }
+                            else
+                            {
+                                <a href="/Admin/Orders/Details/@item.ma" class=""><span>Đã tiếp nhận</span></a>
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ngay_tao)
+                        </td>
+                        <td>
+                            @item.ChiTietHoaDonBans.Sum(x => x.so_luong * x.don_gia)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Chi tiết", "Details", new { id = item.ma })                            
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+@section script{
+    <script>
+        $(function () {
+            $('#example1').DataTable()
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
+    </script>
+}

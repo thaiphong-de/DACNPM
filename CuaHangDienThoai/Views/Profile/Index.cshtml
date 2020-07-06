@@ -1,0 +1,137 @@
+﻿@model Model.EF.TaiKhoan
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/HomeMaster.cshtml";
+}
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Shopping Cart</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- End Page title area -->
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                @Html.Partial("../Partial/SearchProduct")
+                <div id="hotProduct"></div>
+                <div id="newProduct"></div>
+            </div>
+            <div class="col-md-8">
+
+                @using (Html.BeginForm("ChangeProfile", "Profile"))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <h4>Thay đổi thông tin cá nhân</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.tai_khoan)
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ten, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.ten, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ten, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.dia_chi, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.dia_chi, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.dia_chi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.so_dien_thoai, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.so_dien_thoai, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.so_dien_thoai, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Lưu" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+                @using (Html.BeginForm("ChangePassword","Profile",FormMethod.Post, new {@name="formChangePassword", @id="formChangePassword" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <h4>Thay đổi mật khẩu</h4>
+                        <hr />
+                        
+                        <div class="form-group">
+                            
+                            <label class="control-label col-md-2" for="oldPassword">Mật khẩu cũ</label>
+                            <div class="col-md-10">
+                                @if (ViewBag.Message != null)
+                                {
+                                    <span style="color:red;">Sai mật khẩu</span><br>
+                                }
+                                <input type="password" name="oldPassword" placeholder="Nhập vào mật khẩu cũ" value="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2" for="newPassword">Mật khẩu mới</label>
+                            <div class="col-md-10">
+                                <input type="password" name="newPassword" placeholder="Nhập vào mật khẩu mới" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2" for="rePassword">Nhập lại mật khẩu</label><br>
+                            <div class="col-md-10">
+                                <span style="display:none; color:red;" id="msg">Mật khẩu không khớp</span>
+                                <input type="password" name="rePassword" placeholder="Nhập lại mật khẩu" value="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Lưu" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#formChangePassword").submit(function (e) {
+            if ($("[name='newPassword']").val() != $("[name='rePassword']").val()) {
+                $("#msg").show();
+                e.preventDefault();
+            }
+        })
+    })
+</script>

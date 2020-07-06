@@ -1,0 +1,114 @@
+﻿@model IEnumerable<Model.EF.TaiKhoan>
+
+@{
+    ViewBag.Title = "Danh sách tài khoản";
+    Layout = "~/Areas/Admin/Views/Shared/AdminMaster.cshtml";
+}
+
+<section class="content container-fluid">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Danh sách tài khoản</h3>
+            <h3>@Html.ActionLink("Tạo mới", "Create")</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <table id="example1" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Tài khoản
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Tên
+                        </th>
+                        <th>
+                            Ngày sinh
+                        </th>
+                        <th>
+                            Hình ảnh
+                        </th>
+                        <th>
+                            Số điện thọai
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.loai_tai_khoan)
+                        </th>
+                        <th>
+                            Ngày tạo
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tai_khoan)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ten)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ngay_sinh)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.hinh_anh)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.so_dien_thoai)
+                        </td>
+                        <td>
+                            @if (item.loai_tai_khoan == 0)
+                            {
+                                <span class="text-danger">Admin</span>
+                            }
+                            else if (item.loai_tai_khoan == 1)
+                            {
+                                <span class="text-warning">Nhân viên</span>
+                            }
+                            else
+                            {
+                                <span class="text-success">Khách hàng</span>
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ngay_tao)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Sửa", "Edit", new { id = item.tai_khoan }, new { @class = "btn btn-primary" }) |
+                            @Html.ActionLink("Chi tiết", "Details", new { id = item.tai_khoan }, new { @class = "btn btn-warning" }) |
+                            @Html.ActionLink("Xóa", "Delete", new { id = item.tai_khoan }, new { @class = "btn btn-danger" })
+
+
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+@section script{
+    <script>
+        $(function () {
+            $('#example1').DataTable()
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
+    </script>
+}

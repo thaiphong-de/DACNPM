@@ -1,0 +1,21 @@
+﻿@model IEnumerable<CuaHangMayTinh.Models.ProductCartDTO>
+@using System.Globalization;
+<h2 class="product-wid-title">Gần đây</h2>
+
+@foreach (var item in Model)
+{
+    <div class="single-wid-product">
+        <a href="single-product.html"><img src="~/Public/upload/product/@item.Product.hinh_anh" alt="" class="product-thumb"></a>
+        <h2><a href="single-product.html">@item.Product.ten</a></h2>
+        <div class="product-wid-rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+        </div>
+        <div class="product-wid-price">
+            <ins>@item.Product.gia_moi.ToString("#,###", CultureInfo.GetCultureInfo("vi-VN"))</ins> <del>@item.Product.gia_cu.ToString("#,###", CultureInfo.GetCultureInfo("vi-VN"))</del>
+        </div>
+    </div>
+}

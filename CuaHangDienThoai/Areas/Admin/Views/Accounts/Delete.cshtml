@@ -1,0 +1,89 @@
+﻿@model Model.EF.TaiKhoan
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/AdminMaster.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Bạn có muốn xóa tài khoản này?</h3>
+<div>
+    <h4>TaiKhoan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.mat_khau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mat_khau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ten)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngay_sinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngay_sinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hinh_anh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hinh_anh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.so_dien_thoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.so_dien_thoai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.loai_tai_khoan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.loai_tai_khoan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngay_tao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngay_tao)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Quay lại", "Index")
+        </div>
+    }
+</div>

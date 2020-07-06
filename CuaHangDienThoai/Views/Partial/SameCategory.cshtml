@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Model.EF.SanPham>
+@{
+    Layout = null;
+}
+
+
+<h2 class="related-products-title">Sản phẩm liên quan</h2>
+<div class="related-products-carousel">
+    @foreach (Model.EF.SanPham item in Model)
+    {
+        <div class="single-product">
+            <div class="product-f-image">
+                <img src="~/Public/upload/product/@item.hinh_anh" alt="">
+                <div class="product-hover">
+                    <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                    <a href="" class="view-details-link"><i class="fa fa-link"></i> Chi tiết</a>
+                </div>
+            </div>
+
+            <h2><a href="/Home/Detail/@item.ma">@item.ten</a></h2>
+
+            <div class="product-carousel-price">
+                <ins>@item.gia_moi</ins> <del>@item.gia_cu</del>
+            </div>
+        </div>
+    }
+</div>

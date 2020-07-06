@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Model.EF.SanPham>
+@{
+    Layout = null;
+}
+<div class="single-sidebar">
+    <h2 class="sidebar-title">Sản phẩm mới</h2>
+    <ul>
+        @foreach (Model.EF.SanPham item in Model)
+        {
+            <li><a href="/Home/Detail/@item.ma">@item.ten</a></li>
+        }
+        
+    </ul>
+</div>

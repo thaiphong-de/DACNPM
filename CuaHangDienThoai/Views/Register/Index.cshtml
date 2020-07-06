@@ -1,0 +1,140 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Easy admin2 Panel an admin2 Panel Category Flat Bootstrap Responsive Website Template | Sign Up :: w3layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Easy admin2 Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Public/admin2/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+    <!-- Custom CSS -->
+    <link href="~/Public/admin2/css/style.css" rel='stylesheet' type='text/css' />
+    <!-- Graph CSS -->
+    <link href="~/Public/admin2/css/font-awesome.css" rel="stylesheet">
+    <!-- jQuery -->
+    <!-- lined-icons -->
+    <link rel="stylesheet" href="~/Public/admin2/css/icon-font.min.css" type='text/css' />
+    <!-- //lined-icons -->
+    <!-- chart -->
+    <script src="~/Public/admin2/js/Chart.js"></script>
+    <!-- //chart -->
+    <!--animate-->
+    <link href="~/Public/admin2/css/animate.css" rel="stylesheet" type="text/css" media="all">
+    <script src="~/Public/admin2/js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <!--//end-animate-->
+    <!-- Meters graphs -->
+    <script src="~/Public/admin2/js/jquery-1.10.2.min.js"></script>
+    <!-- Placed js at the end of the document so the pages load faster -->
+    <!--Captcha thêm sau thẻ </head>-->
+    <script src="https://www.google.com/recaptcha/api.js?hl=vi" async defer></script>
+
+</head>
+
+<body class="sign-in-up">
+    <section>
+        <div id="page-wrapper" class="sign-in-wrapper">
+            <div class="graphs">
+                <div class="sign-up">
+                    <h3>Đăng ký</h3>
+                    <p class="creating">
+                    </p>
+                    <form action="/Register/Register" method="post" id="formRegister">
+                        <h5>Thông tin đăng ký</h5>
+                        <div class="sign-u">
+                            <div class="sign-up1">
+                                <h4>Tài khoản* :</h4>
+                            </div>
+                            <div class="sign-up2">
+                                <input type="text" placeholder=" " required=" " name="username" />
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="sign-u">
+                            <div class="sign-up1">
+                                <h4>Địa chỉ:</h4>
+                            </div>
+                            <div class="sign-up2">
+                                <input type="text" placeholder=" " required=" " name="address" />
+
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="sign-u">
+                            <div class="sign-up1">
+                                <h4>Email* :</h4>
+                            </div>
+                            <div class="sign-up2">
+                                <input type="text" placeholder=" " required=" " name="email" />
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <h6>Thông tin đăng nhập</h6>
+                        <div class="sign-u">
+                            <div class="sign-up1">
+                                <h4>Password* :</h4>
+                            </div>
+                            <div class="sign-up2">
+                                <input type="password" placeholder=" " required=" " name="password" />
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="sign-u">
+                            <div class="sign-up1">
+                                <h4>Nhập lại password* :</h4>
+                            </div>
+                            <div class="sign-up2">
+                                <span style="display:none; color:red" id="msg">Mật khẩu không khớp</span>
+                                <input type="password" placeholder=" " required=" " name="rePassword" />
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <!--Captcha-->
+                        <div class="g-recaptcha" hl="" data-sitekey="6LfPra0ZAAAAAF5jnO5bRFRUm18QBxCBywV_iA3D"></div>
+                        <div class="sub_home">
+                            <div class="sub_home_left">
+                                <input type="submit" value="Đăng ký">
+                            </div>
+                            <div class="sub_home_right">
+                                <p>Quay lại <a href="index.html">Trang chủ</a></p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="~/Public/admin2/js/jquery.nicescroll.js"></script>
+    <script src="~/Public/admin2/js/scripts.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Public/admin2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#formRegister').submit(function (e) {
+                if ($('[name="password"]').val() != $('[name="rePassword"]').val()) {
+                    e.preventDefault();
+                    $('#msg').show();
+                }
+            })
+        })
+    </script>
+</body>
+</html>

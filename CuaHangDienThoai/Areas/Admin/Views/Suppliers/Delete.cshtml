@@ -1,0 +1,31 @@
+﻿@model Model.EF.NhaCungCap
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/AdminMaster.cshtml";
+}
+<h3>Lưu ý rằng: Nếu bạn muốn xóa nhà cung cấp này hãy chắc chắn sản phẩm của bạn không có thông tin nhà cung cấp này</h3>
+<h3>Bạn có muốn xóa nhà cung cấp này?</h3>
+<div>
+    <h4>Nhà cung cấp</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ten)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Trở về", "Index")
+        </div>
+    }
+</div>
