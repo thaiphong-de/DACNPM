@@ -48,9 +48,9 @@ namespace CuaHangMayTinh.Controllers
             
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
 
-            var fromEmail = new MailAddress("boxuanhoang2016@gmail.com", "MobileStore");
+            var fromEmail = new MailAddress("phong2941999@gmail.com", "MobileStore");
             var toEmail = new MailAddress(emailID);
-            var fromEmailPassword = "Hoang1708"; // Replace with actual password
+            var fromEmailPassword = "THAIPHONG357941"; // Replace with actual password
             string subject = "Đơn hàng mới";
 
             string body = "<br/><br/>Bạn có đơn hàng mới , bấm để xem chi tiết" +
@@ -119,7 +119,7 @@ namespace CuaHangMayTinh.Controllers
            // content = content.Replace("{{Link}}", "http://localhost:56581/" + "Admin/Orders/Details/" + bill.ma);
 
             
-            MailHelper.SendMail("boxuanhoang2016@gmail.com", "Có đơn đặt hàng mới","Bạn có đơn đặt hàng mới từ khách hàng");
+            MailHelper.SendMail("phong2941999@gmail.com", "Có đơn đặt hàng mới","Bạn có đơn đặt hàng mới từ khách hàng");
             //MailHelper.SendMail(bill.email, "bạn đã đặt hàng","Cám ơn bạn đã mua hàng , lần sau mua nhiều hơn nha, xem chi tiết tại đây"+ content1);
             SendVerificationLinkEmail(bill.email, bill.ma);
             return View(bill);
